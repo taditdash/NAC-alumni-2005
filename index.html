@@ -73,10 +73,9 @@
       nameForm.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent form default submission
         const name = nameInput.value.trim();
-
-        if (name) {
+if (name) {
   document.getElementById("invitationMessage").innerHTML = `
-    ହେ ${name} ସାଙ୍ଗ !
+    ହେ ${name} ସାଙ୍ଗ!
     ମୁଁ ତ କେତେ କାହାକୁ କହିଲିଣି ତମେ କାହାକୁ କହିଲଣି ନା ନାଇଁ ? ଯେତେବେଳେ ସମୟ ପାଉଛ ଆମ ଭୋଜି ତାରିଖଟା 
     ଡିସେମ୍ବର 15 ଶୀତ ସକାଳ
     ସମୟ ଖରା ପୋଇଁବା ବେଳ l ଠିକ୍ ଦଶ ଟା l ଆମେ ଏକାଠି ହେବା ( ଶୁଭମ ବଗିଚା ,ମୁକ୍ତାପୁର ), ସେଇଠି କହିଦବ।
@@ -92,7 +91,10 @@
 
     2005 ଵ୍ୟାଚ୍ ସାଙ୍ଗମାନେ
   `;
+  nameModal.hide();
+  nameInput.value = ""; // Clear input for next use
 }
+        
       });
     });
   </script>

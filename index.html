@@ -57,6 +57,46 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // Function to download invitation as PDF
+function downloadInvitationAsPDF() {
+  // Get the invitation message
+  const invitationContent = document.getElementById("invitationMessage").innerHTML;
+
+  // Create a hidden iframe
+  const iframe = document.createElement("iframe");
+  document.body.appendChild(iframe);
+
+  // Write the invitation content into the iframe
+  iframe.contentWindow.document.open();
+  iframe.contentWindow.document.write(`
+    <html>
+      <head>
+        <title>Invitation</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 20px;
+          }
+          p {
+            margin: 10px 0;
+          }
+        </style>
+      </head>
+      <body>${invitationContent}</body>
+    </html>
+  `);
+  iframe.contentWindow.document.close();
+
+  // Convert the iframe content to PDF
+  iframe.contentWindow.focus();
+  iframe.contentWindow.print();
+
+  // Remove the iframe after the process
+  setTimeout(() => {
+    document.body.removeChild(iframe);
+  }, 500);
+}
     document.addEventListener("DOMContentLoaded", () => {
       const enterNameButton = document.getElementById("enterNameButton");
       const nameModal = new bootstrap.Modal(document.getElementById("nameModal"));
@@ -93,6 +133,7 @@ if (name) {
     ବାହାନା <strong>ବିଲୁକୁଲ କରିବନି</strong>. ଆମେ ସମସ୍ତେ ସମସ୍ତଙ୍କ ଅପେକ୍ଷାରେ।</p>
 
     <p><strong>2005 ବ୍ୟାଚ୍ ସାଙ୍ଗମାନେ</strong></p>
+    <button class='btn btn-primary mt-3' onclick='downloadInvitationAsPDF()'>Download Invitation as PDF</button>
   `;
   nameModal.hide();
   nameInput.value = ""; // Clear input for next use
